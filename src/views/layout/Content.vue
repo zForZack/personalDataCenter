@@ -1,8 +1,10 @@
 <template>
   <div class="content">
-    <!-- <swiper :options="swiperOption" ref="mySwiper">
-      <swiper-slide></swiper-slide>
-    </swiper> -->
+    <transition-group tag='ul' name='img' class="transul">
+      <li v-for='(image,index) in imgs' :key='image.id' v-show='index===mark'>
+        <div class="divImg" :style="{backgroundImage: 'url('+ image.url+')'}"></div>
+      </li>
+    </transition-group>
     <div id="login-div">
       <el-form class="login-form" ref="loginForm" :model="loginForm" :rules="rules" label-width="70px" label-position="right" hide-required-asterisk>
         <div class="form-head">用户登录</div>
@@ -35,8 +37,26 @@ export default {
         password: [
           { required: true, message: '请输入密码', trigger: 'blur' }
         ]
-      }
+      },
+      mark: 0,
+      imgs: [
+        {
+          id: '1',
+          url: require('../../assets/images/bg1.png')
+        },
+        {
+          id: '2',
+          url: require('../../assets/images/bg2.png')
+        },
+        {
+          id: '3',
+          url: require('../../assets/images/bg3.png')
+        }
+      ]
     }
+  },
+  created () {
+    this.play()
   },
   methods: {
     submitForm (formName) {
@@ -48,6 +68,16 @@ export default {
           return false
         }
       })
+    },
+    autoPlay () {
+      if (this.mark < this.imgs.length - 1) {
+        this.mark++
+      } else {
+        this.mark = 0
+      }
+    },
+    play () {
+      setInterval(this.autoPlay, 5000)
     }
   }
 }
@@ -55,12 +85,21 @@ export default {
 
 <style lang="scss" scoped>
 .content{
+  position: relative;
   display: flex;
   width: 100%;
-  height: 750px;
+  height: 581px;
   background: url(../../assets/images/bg2.png) no-repeat;
   justify-content: flex-end;
   align-items: center;
+  .transul{
+    position: absolute;
+    left: -40px;
+    top: 0;
+    display: inline;
+    margin: 0;
+    list-style-type: none;
+  }
 }
 #login-div{
   position: relative;
@@ -92,6 +131,34 @@ export default {
 .login-button {
   width: 92%;
   margin-top: 20px;
+}
+
+.content ul li {
+  position: absolute;
+  overflow: hidden;
+}
+
+.content .divImg {
+  background-position: 0px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: 1535px;
+  height: 581px;
+}
+
+.img-enter-active,
+.img-leave-active {
+  transition: all 4s;
+}
+
+.img-enter,
+.img-leave-to {
+  opacity: 0;
+}
+
+.img-enter-to,
+.img-leave {
+  opacity: 1;
 }
 
 </style>
