@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import { Button, Row, Col } from 'element-ui'
-import 'element-ui/lib/theme-chalk/index.css'
+import Element from 'element-ui'
+import '../element-variables.scss'
 
-Vue.use(Button, Row, Col)
+Vue.use(Element)

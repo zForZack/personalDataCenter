@@ -13,6 +13,8 @@ export default {
 
 <style lang="scss" scoped>
 .header{
-  width:100%
+  width:100%;
+  display: flex;
+  background-color: #22282d;
 }
 </style>

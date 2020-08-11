@@ -14,7 +14,7 @@ export default {
 <style lang="scss" scoped>
 .footer{
   position: relative;
-  background-color: $theme-color-primary;
+  background-color: #22282d;
   text-align: center;
   font-size: 14px;
   color: #fff;
