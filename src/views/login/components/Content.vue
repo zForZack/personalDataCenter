@@ -6,13 +6,13 @@
       </li>
     </transition-group>
     <div id="login-div">
-      <el-form class="login-form" ref="loginForm" :model="loginForm" :rules="rules" label-width="70px" label-position="right" hide-required-asterisk>
+      <el-form class="login-form" ref="loginForm" :model="loginForm" :rules="rules" hide-required-asterisk>
         <div class="form-head">用户登录</div>
-        <el-form-item label="用户名" class="login-name" prop="name">
-          <el-input v-model="loginForm.name" class="login-input" auto-complete="new-password"></el-input>
+        <el-form-item label="" class="login-name" prop="name">
+          <el-input v-model.trim="loginForm.name" class="login-input" auto-complete="new-password"  prefix-icon="el-icon-user"></el-input>
         </el-form-item>
-        <el-form-item label="密码" prop="password">
-          <el-input type="password" v-model="loginForm.password" class="login-input" auto-complete="new-password"></el-input>
+        <el-form-item label="" prop="password">
+          <el-input type="password" v-model.trim="loginForm.password" class="login-input" auto-complete="new-password" prefix-icon="el-icon-key"></el-input>
         </el-form-item>
         <el-button type="primary" @click="submitForm('loginForm')" class='login-button'>登录</el-button>
       </el-form>
@@ -42,15 +42,15 @@ export default {
       imgs: [
         {
           id: '1',
-          url: require('../../assets/images/bg1.png')
+          url: require('@assets/images/bg1.png')
         },
         {
           id: '2',
-          url: require('../../assets/images/bg2.png')
+          url: require('@assets/images/bg2.png')
         },
         {
           id: '3',
-          url: require('../../assets/images/bg3.png')
+          url: require('@assets/images/bg3.png')
         }
       ]
     }
@@ -62,8 +62,10 @@ export default {
     submitForm (formName) {
       this.$refs[formName].validate((valid) => {
         if (valid) {
-          alert('submit!')
+          // 校验成功，可以提交数据
+          this.$router.push({ path: '/menu' })
         } else {
+          // 校验失败，显示提示信息
           console.log('error submit!!')
           return false
         }
@@ -83,15 +85,16 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .content{
   position: relative;
   display: flex;
   width: 100%;
-  height: 581px;
-  background: url(../../assets/images/bg2.png) no-repeat;
+  height: 100%;
+  // background: url(@assets/images/bg2.png) no-repeat;
   justify-content: flex-end;
   align-items: center;
+  overflow: hidden;
   .transul{
     position: absolute;
     left: -40px;
@@ -99,15 +102,17 @@ export default {
     display: inline;
     margin: 0;
     list-style-type: none;
+    width: inherit;
   }
 }
 #login-div{
   position: relative;
   width:290px;
-  height:350px;
+  height:18rem;
   right: 8%;
   border-radius: 5px;
   background-color: rgba(0, 0, 0, 0.8);
+  margin: 10.29rem 0;
 }
 .login-name{
   padding-top: 30px;
@@ -117,7 +122,7 @@ export default {
   }
 }
 .login-input{
-  width:90%;
+  width: 90%!important;
 }
 .form-head{
   height: 40px;
@@ -129,21 +134,22 @@ export default {
   color: #fff;
 }
 .login-button {
-  width: 92%;
+  width: 90%;
   margin-top: 20px;
 }
 
 .content ul li {
   position: absolute;
   overflow: hidden;
+  width: inherit;
 }
 
 .content .divImg {
   background-position: 0px;
   background-size: cover;
   background-repeat: no-repeat;
-  width: 1535px;
-  height: 581px;
+  width: inherit;
+  height: 40rem;
 }
 
 .img-enter-active,
@@ -160,5 +166,11 @@ export default {
 .img-leave {
   opacity: 1;
 }
-
+.el-input__icon {
+  border-right: 1px solid;
+  padding-right: 5px;
+}
+.el-input--prefix .el-input__inner {
+  padding-left: 40px!important;
+}
 </style>
