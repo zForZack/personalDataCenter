@@ -14,6 +14,11 @@ const routes = [
     path: '/menu',
     name: 'menu',
     component: () => import('../views/menu/menu.vue')
+  },
+  {
+    path: '*',
+    name: '404',
+    component: () => import('@/components/HelloWorld.vue')
   }
   // {
   //   path: '/about',
