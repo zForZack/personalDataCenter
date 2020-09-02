@@ -6,7 +6,7 @@
         <el-button @click="handleCollapse()">{{isCollapsebutton}}</el-button>
       </el-radio-group>
       <el-menu default-active="1" class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose" :collapse="isCollapse" background-color="#313451" text-color="#fff" active-text-color="#5fccff">
-        <el-menu-item :index="item.path" v-for="item in noChildren" :key="item.path">
+        <el-menu-item :index="item.path" v-for="item in noChildren" :key="item.path" @click="goto(item.path)">
           <i :class="'el-icon-' + item.icon"></i>
           <span slot="title">{{item.label}}</span>
         </el-menu-item>
@@ -36,7 +36,7 @@ export default {
       isCollapsebutton: '收起',
       asideMenu: [
         {
-          path: '/', // 地址
+          path: '/menu/mainPage', // 地址
           label: '首页', // 菜单标识
           icon: 's-platform' // 图标选取的是element图表，然后拼接到上面
         },
@@ -79,6 +79,9 @@ export default {
     handleCollapse () {
       this.isCollapse = !this.isCollapse
       this.isCollapsebutton = this.isCollapsebutton === '展开' ? '收起' : '展开'
+    },
+    goto (path) {
+      this.$router.replace(path)
     }
   }
 }

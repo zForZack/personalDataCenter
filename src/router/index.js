@@ -13,7 +13,11 @@ const routes = [
   {
     path: '/menu',
     name: 'menu',
-    component: () => import('../views/menu/menu.vue')
+    component: () => import('../views/menu/menu.vue'),
+    children: [{
+      path: 'mainPage',
+      component: () => import('@/components/HelloWorld.vue')
+    }]
   },
   {
     path: '*',
