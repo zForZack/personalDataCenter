@@ -16,7 +16,8 @@ const routes = [
     component: () => import('../views/menu/menu.vue'),
     children: [{
       path: 'mainPage',
-      component: () => import('@/components/HelloWorld.vue')
+      name: 'mainPage',
+      component: () => import('@/views/pages/mainPage.vue')
     }]
   },
   {

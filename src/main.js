@@ -6,6 +6,9 @@ import store from './store'
 import vueAwesomeSwiper from 'vue-awesome-swiper'
 import 'swiper/swiper-bundle.css'
 import './plugins/element.js'
+import echarts from 'echarts'
+
+Vue.prototype.$echarts = echarts
 
 Vue.config.productionTip = false
 Vue.use(vueAwesomeSwiper)

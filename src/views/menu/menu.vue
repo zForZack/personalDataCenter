@@ -2,9 +2,9 @@
 <template>
   <div class="menu">
     <div class="left-bar">
-      <el-radio-group v-model="isCollapse" style="margin-bottom: 20px;">
+      <!-- <el-radio-group v-model="isCollapse" style="margin-bottom: 20px;">
         <el-button @click="handleCollapse()">{{isCollapsebutton}}</el-button>
-      </el-radio-group>
+      </el-radio-group> -->
       <el-menu default-active="1" class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose" :collapse="isCollapse" background-color="#313451" text-color="#fff" active-text-color="#5fccff">
         <el-menu-item :index="item.path" v-for="item in noChildren" :key="item.path" @click="goto(item.path)">
           <i :class="'el-icon-' + item.icon"></i>
@@ -46,11 +46,11 @@ export default {
           children: [
             {
               path: '/page1',
-              label: '页面1'
+              label: '用户管理'
             },
             {
-              path: 'page1',
-              label: '页面1'
+              path: '/page1',
+              label: '角色管理'
             }
           ]
         }
@@ -95,6 +95,9 @@ export default {
   position: absolute;
   left: 0;
   background-color: #313451;
+}
+.left-bar>ul{
+  padding-top: 50px;
 }
 .el-menu-vertical-demo:not(.el-menu--collapse) {
     width: 200px;
